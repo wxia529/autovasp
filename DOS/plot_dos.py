@@ -9,10 +9,11 @@ import re
 # --- 1. Basic Plotting Switches ---
 ALIGN_TO_FERMI  = True        # True: Shift energy so Fermi level is at 0 eV.
 SHOW_TOTAL_DOS  = False       # True: Plot the total DOS (black line).
+SHOW_FERMI_LINE  = False       # True: Show Fermi plots
 
 # --- 2. Axis Limits ---
-X_LIM           = [-6, 8]     # X-axis range (Energy in eV).
-Y_LIM           = [-25, 25]   # Y-axis range (DOS units). Set to None for auto-scaling.
+X_LIM           = [-5, 5]     # X-axis range (Energy in eV).
+Y_LIM           = None   # Y-axis range (DOS units). Set to None for auto-scaling.
 
 # --- 3. Sorting & Ordering Logic ---
 ORDER_MODE      = 'auto'      # Options: 'auto' (Metals first) or 'manual'.
@@ -149,7 +150,8 @@ def plot_vasp_dos(dos_data):
         else: 
             ax.set_ylim(0, ylim_top)
 
-    ax.axvline(fermi_line, ls='--', c='gray', lw=1.0, label='E$_F$')
+    if SHOW_FERMI_LINE:
+        ax.axvline(fermi_line, ls='--', c='gray', lw=1.0, label='E$_F$')
     ax.axhline(0, c='black', lw=0.5)
     
     ax.set_xlim(X_LIM)
