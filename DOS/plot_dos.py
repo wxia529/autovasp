@@ -23,6 +23,7 @@ MANUAL_COLORS   = []          # Custom hex codes or color names if mode is 'manu
 
 # --- 4. Aesthetics ---
 LEGEND_LOC      = 'upper left' # Position of the legend.
+LEGEND_NCOL     = 1            # 
 COLOR_TOTAL     = 'k'          # Color for the total DOS line.
 
 # --- 5. Font Configuration (NEW: Separated Sizes) ---
@@ -159,11 +160,10 @@ def plot_vasp_dos(dos_data):
     ax.set_ylabel('Density of states (states/eV)')
 
     # --- NEW: Independent Legend Font Size ---
-    # 使用 fontsize 参数来覆盖全局设置
-    ax.legend(loc=LEGEND_LOC, frameon=False, fontsize=LEGEND_FONT_SIZE)
-    
+    ax.legend(loc=LEGEND_LOC, frameon=False, fontsize=LEGEND_FONT_SIZE, ncol=LEGEND_NCOL)
+
     for spine in ax.spines.values(): 
         spine.set_linewidth(1.5)
-        
+
     plt.tight_layout()
     plt.show()
